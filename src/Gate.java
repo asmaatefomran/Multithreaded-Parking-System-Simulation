@@ -1,7 +1,7 @@
 public class Gate {
     private int carsEntered=0;
     private final LoggingandReporting logger;
-    private final String gatename;
+    public final String gatename;
 
     public Gate(String name,LoggingandReporting log){
         this.logger=log;

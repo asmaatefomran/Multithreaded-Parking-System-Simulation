@@ -11,7 +11,7 @@ import java.util.concurrent.Semaphore;
     }
 
 
-    public  boolean parkCar(String carName, int parkDuration) {
+    public  boolean parkCar(String carName, int parkDuration,String gate) {
         //try enter car in parking
         try {
             synchronized (this){startWaitTime = System.currentTimeMillis();}
@@ -22,19 +22,19 @@ import java.util.concurrent.Semaphore;
             synchronized (this){
                 long endWaitTime = System.currentTimeMillis();
                 long waitTime = (endWaitTime - startWaitTime) / 1000;
-                System.out.println(carName + " waited for " + waitTime + " seconds before parking.");
+                System.out.println(carName +" from "+gate+ " waited for " + waitTime + " seconds before parking.");
             }
             synchronized (this) {
                 // Car is parked
                 currentCars++;
-                System.out.println(carName + " parked. (Parking Status: " + currentCars + " spots occupied)");
+                System.out.println(carName +" from "+gate+ " parked. (Parking Status: " + currentCars + " spots occupied)");
             }
 
             Thread.sleep(parkDuration * 1000); // car stays in parking
             //synchronized to prevent two thread from accessing at the same time
             synchronized(this){
                 currentCars--;  // car leaves the parking
-                System.out.println(carName + " left after " + parkDuration + " seconds. (Parking Status: " + currentCars + " spots occupied)");
+                System.out.println(carName +" from "+gate+ " left after " + parkDuration + " seconds. (Parking Status: " + currentCars + " spots occupied)");
             }
             parking_spots.release(); // increase the available spots
             return true;

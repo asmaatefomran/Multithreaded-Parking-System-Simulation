@@ -32,11 +32,9 @@ public class Car implements Runnable {
         logger.logAction(carnum+" arrived after "+ arrivaltime+" seconds.");
         
         //checking if there is a free parking spot
-        if(parkinglot.parkCar(carnum,parkingtime)){
+        if(parkinglot.parkCar(carnum,parkingtime,gate.gatename)){
             // make the car enter throw the gate
             gate.carEnters(carnum);
-            //log that the car parked for a dur
-            logger.logAction(carnum+" parked for "+parkingtime+" seconds.");
         }
         else{
             // log that there is no free spots so the car didn't park
