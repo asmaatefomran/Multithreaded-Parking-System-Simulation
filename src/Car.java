@@ -17,7 +17,10 @@ public class Car implements Runnable {
         this.logger=log;
         this.parkinglot=parking;
     }
-
+    
+    public int getArrivalTime() {
+        return arrivaltime;
+    }
 
     @Override
     public void run(){
